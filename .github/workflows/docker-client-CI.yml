@@ -19,6 +19,6 @@ jobs:
         image: risahbhnama/crudappreact
         tags: v1, latest
         registry: registry-url.io
-        dockerfile: 'rishabhnama/container-crud/server/client/Dockerfile'
+        dockerfile: rishabhnama/container-crud/server/client/dockerfile
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
