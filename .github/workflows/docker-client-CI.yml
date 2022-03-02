@@ -19,6 +19,6 @@ jobs:
         image: repo/image
         tags: v1, latest
         registry: docker.io
-        dockerfile: server/client/dockerfile.ci
+        dockerfile: server/client/dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
