@@ -20,3 +20,4 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
         dockerfile path: server/client/dockerfile
+#         run: dsfdsf
