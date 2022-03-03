@@ -8,6 +8,8 @@ services:
       MYSQL_ROOT_PASSWORD: root
     ports:
       - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
       
   mynode:
     build: ./server
@@ -22,4 +24,7 @@ services:
       - mynode
     ports:
       - "80:80"
+volumes:
+  db-data:
+    driver: local
 
