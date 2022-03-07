@@ -95,7 +95,7 @@ function App() {
             setCountry(event.target.value);
           }}
         />
-        <label>Designation:</label>
+        <label>Position:</label>
         <input
           type="text"
           onChange={(event) => {
@@ -122,7 +122,7 @@ function App() {
                 <h3>Age: {val.age}</h3>
                 <h3>Country: {val.country}</h3>
                 <h3>Position: {val.position}</h3>
-                <h3>Wage: {val.wage}</h3>
+                <h3>Salary: {val.wage}</h3>
               </div>
               <div>
                 <input
