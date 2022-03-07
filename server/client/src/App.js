@@ -95,7 +95,7 @@ function App() {
             setCountry(event.target.value);
           }}
         />
-        <label>Designation:</label>
+        <label>Position:</label>
         <input
           type="text"
           onChange={(event) => {
