@@ -42,7 +42,7 @@ jobs:
 
       - name: SSH to Azure VM
         run: |
-          ssh -i rishabh.pem azureuser@52.191.118.178
+          ssh -tt rishabh.pem azureuser@52.191.118.178
           sudo -i
           cd test
           cd container-crud
