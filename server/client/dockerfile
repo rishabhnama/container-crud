@@ -2,8 +2,6 @@ FROM node:16-alpine AS BUILD
 
 WORKDIR /var/crudapp
 
-RUN npm update
-
 COPY ./package.json ./
 
 RUN npm install 
