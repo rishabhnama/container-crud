@@ -40,13 +40,20 @@ jobs:
           docker build . -t rishabhnama/crudappreact:latest
           docker push rishabhnama/crudappreact:latest
 
-      - name: SSH to Azure VM
-        run: |
-          ssh -tt rishabh.pem azureuser@52.191.118.178
-          sudo -i
-          cd test
-          cd container-crud
-          cd server
-          docker-compose pull
-          docker-compose build --no-cache
-          docker-compose up
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: LAPTOP-2D25B98S
+          username: rishabh
+          password: ${{ secrets.SSH_SECRET_KEY }}
+          port: 22
+          script: |
+
+            sudo -i
+            mkdir test2
+            # cd test
+            # cd container-crud
+            # cd server
+            # docker-compose pull
+            # docker-compose build --no-cache
+            # docker-compose up
