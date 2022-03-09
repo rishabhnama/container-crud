@@ -43,7 +43,7 @@ jobs:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
-          host: RISHABH-ROG
+          host: 49.36.47.96
           username: rishabh
           password: ${{ secrets.SSH_SECRET_KEY }}
           port: 22
