@@ -102,7 +102,7 @@ function App() {
             setPosition(event.target.value);
           }}
         />
-        <label>Salary:</label>
+        <label>Wage:</label>
         <input
           type="number"
           onChange={(event) => {
