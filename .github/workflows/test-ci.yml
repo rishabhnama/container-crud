@@ -37,23 +37,23 @@ jobs:
         run: |
           cd server
           cd client
-          docker build . -t rishabhnama/crudappreact:latest
-          docker push rishabhnama/crudappreact:latest
+          docker build . -t rishabhnama/crudtest:latest
+          docker push rishabhnama/crudtest:latest
 
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
-        with:
-          host: 49.36.47.96
-          username: rishabh
-          password: ${{ secrets.SSH_SECRET_KEY }}
-          port: 22
-          script: |
+#       - name: executing remote ssh commands using password
+#         uses: appleboy/ssh-action@master
+#         with:
+#           host: 49.36.47.96
+#           username: rishabh
+#           password: ${{ secrets.SSH_SECRET_KEY }}
+#           port: 22
+#           script: |
 
-            sudo -i
-            mkdir test2
-            # cd test
-            # cd container-crud
-            # cd server
-            # docker-compose pull
-            # docker-compose build --no-cache
-            # docker-compose up
+#             sudo -i
+#             mkdir test2
+#             # cd test
+#             # cd container-crud
+#             # cd server
+#             # docker-compose pull
+#             # docker-compose build --no-cache
+#             # docker-compose up
