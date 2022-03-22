@@ -51,7 +51,7 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
       - run: |
-          docker tag crudappreact:latest contoso.azurecr.io/crudappreact:${{ github.sha }}
+          docker tag rishabhnama/crudtest:latest contoso.azurecr.io/crudappreact:${{ github.sha }}
           docker push contoso.azurecr.io/crudappreact:${{ github.sha }}
 
       - name: 'Deploy to Azure Container Instances'
