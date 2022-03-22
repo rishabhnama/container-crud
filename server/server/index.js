@@ -8,7 +8,7 @@ app.use(express.json());
 
 const db = mysql.createConnection({
   user: "root",
-  host: "mysql-service",
+  host: "mysql-service.default.svc.cluster.local",
   password: "root",
 });
 
