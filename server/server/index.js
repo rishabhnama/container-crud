@@ -7,9 +7,9 @@ app.use(cors());
 app.use(express.json());
 
 const db = mysql.createConnection({
-  user: "root",
-  host: "mysql-service",
-  password: "root",
+  user: "crud",
+  host: "crud-db-server.mysql.database.azure.com",
+  password: "Rishabh#1234",
 });
 
 db.query("CREATE DATABASE IF NOT EXISTS employeeSystem");
