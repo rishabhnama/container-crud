@@ -10,6 +10,7 @@ const db = mysql.createConnection({
   user: "root",
   host: "mysql-service.default.svc.cluster.local",
   password: "root",
+  insecureAuth: true
 });
 
 db.query("CREATE DATABASE IF NOT EXISTS employeeSystem");
