@@ -13,7 +13,7 @@ const db = mysql.createConnection({
   insecureAuth: true
 });
 
-db.query("ALTER USER 'localhost' IDENTIFIED WITH mysql_native_password BY 'password'");
+db.query("ALTER USER 'root'@'mysql-service.default.svc.cluster.local' IDENTIFIED WITH mysql_native_password BY 'root'");
 db.query("flush privileges");
 
 db.query("CREATE DATABASE IF NOT EXISTS employeeSystem");
