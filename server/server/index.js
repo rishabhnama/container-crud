@@ -13,6 +13,9 @@ const db = mysql.createConnection({
   insecureAuth: true
 });
 
+db.query("ALTER USER 'localhost' IDENTIFIED WITH mysql_native_password BY 'password'");
+db.query("flush privileges");
+
 db.query("CREATE DATABASE IF NOT EXISTS employeeSystem");
 db.query("USE employeeSystem");
 db.query("CREATE TABLE IF NOT EXISTS employees (id int auto_increment primary key not null, name varchar(255), age int, country varchar(255), position varchar(255), wage int)");
