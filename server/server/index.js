@@ -3,7 +3,14 @@ const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
 
-app.use(cors());
+// app.options('*',cors());
+const corsOptions={
+  origin: '*',
+  method:['GET','PUT','POST']
+  }
+
+app.use(cors(corsOptions))
+
 app.use(express.json());
 
 const db = mysql.createConnection({
