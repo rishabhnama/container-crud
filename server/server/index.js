@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
+require('dotenv').config()
 
 // app.options('*',cors());
 const corsOptions={
@@ -14,9 +15,9 @@ app.use(cors(corsOptions))
 app.use(express.json());
 
 const db = mysql.createConnection({
-  user: "root",
+  user: process.env.user,
   host: "mysql-service.default.svc.cluster.local",
-  password: "example",
+  password: process.env.password,
   insecureAuth: true
 });
 
@@ -100,4 +101,5 @@ app.delete("/delete/:id", (req, res) => {
 // });
 app.listen(8000, () => {
   console.log("Yey, your server is running on port 8000");
+  console.log(`User ${process.env.user} is logged in for db`)
 });
