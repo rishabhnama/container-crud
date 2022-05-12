@@ -101,5 +101,6 @@ app.delete("/delete/:id", (req, res) => {
 // });
 app.listen(8000, () => {
   console.log("Yey, your server is running on port 8000");
-  console.log(`User ${process.env.user} is logged in for db`)
+  console.log(`User ${process.env.user} is logged in for db`);
+  console.log(`Pass ${process.env.password} is used for db`);
 });
