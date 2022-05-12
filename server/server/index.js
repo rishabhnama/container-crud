@@ -16,7 +16,7 @@ app.use(express.json());
 
 const db = mysql.createConnection({
   user: process.env.user,
-  host: "mysql-service.default.svc.cluster.local",
+  host: process.env.host,
   password: process.env.password,
   insecureAuth: true
 });
