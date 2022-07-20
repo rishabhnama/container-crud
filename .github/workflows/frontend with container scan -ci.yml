@@ -39,4 +39,10 @@ jobs:
           cd client
           docker build . -t rishabhnama/crudappreact:latest
           docker push rishabhnama/crudappreact:latest
+          
+      - name: Scan image
+        uses: anchore/scan-action@v3
+        with:
+          image: "localbuild/testimage:latest"
+          fail-build: false
 
