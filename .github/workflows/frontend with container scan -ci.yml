@@ -43,6 +43,6 @@ jobs:
       - name: Scan image
         uses: anchore/scan-action@v3
         with:
-          image: "localbuild/testimage:latest"
+          image: "rishabhnama/crudappreact:latest"
           fail-build: false
 
