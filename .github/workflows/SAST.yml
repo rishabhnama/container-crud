@@ -1,7 +1,7 @@
 
 # This is a basic workflow to help you get started with Actions
 
-name: SAST, License Scanning, Container Scanning, Dependency Scanning, Linters
+name: SAST with License Scanning
 
 # Controls when the workflow will run
 on:
@@ -31,22 +31,3 @@ jobs:
       - name: Perform Scan
         uses: ShiftLeftSecurity/scan-action@master
         
-# Dependency Scan
-  
-      - name: Build project with Maven
-        run: mvn clean install
-      - name: Depcheck
-        uses: dependency-check/Dependency-Check_Action@main
-        id: Depcheck
-        with:
-          project: 'test'
-          path: '.'
-          format: 'HTML'    
-          args: >
-            --failOnCVSS 7
-            --enableRetired
-      - name: Upload Test results
-        uses: actions/upload-artifact@master
-        with:
-           name: Depcheck report
-           path: ${{github.workspace}}/reports
