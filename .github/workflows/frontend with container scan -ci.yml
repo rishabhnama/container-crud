@@ -42,8 +42,10 @@ jobs:
           
       - name: Scan image
         uses: anchore/scan-action@v3
+        id: scan
         with:
           image: "rishabhnama/crudappreact:latest"
+          acs-report-enable: true
           fail-build: false
           
       - name: upload Anchore scan SARIF report
