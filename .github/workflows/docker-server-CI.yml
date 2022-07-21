@@ -37,3 +37,19 @@ jobs:
           cd server
           docker build . -t rishabhnama/crudappnode:latest
           docker push rishabhnama/crudappnode:latest
+          
+      - name: Scan image
+        uses: anchore/scan-action@v3
+        id: scan
+        with:
+          image: "rishabhnama/crudappnode:latest"
+          acs-report-enable: true
+          fail-build: false
+          
+      - name: upload Anchore scan SARIF report
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }}
+          
+      - name: Inspect action SARIF report
+        run: cat ${{ steps.scan.outputs.sarif }}
