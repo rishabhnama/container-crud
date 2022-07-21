@@ -11,6 +11,17 @@ jobs:
           cd client
           docker build . -t rishabhnama/crudappreact:latest
       - uses: anchore/scan-action@v3
+        id: scan
         with:
           image: "rishabhnama/crudappreact:latest"
-          fail-build: true
+          fail-build: false
+          acs-report-enable: true
+          
+      - name: upload Anchore scan SARIF report
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }}
+      - name: Inspect action SARIF report
+        run: cat ${{ steps.scan.outputs.sarif }}
+          
+        
