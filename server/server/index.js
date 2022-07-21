@@ -2,15 +2,15 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
-require('dotenv').config()
+require("dotenv").config();
 
 // app.options('*',cors());
-const corsOptions={
-  origin: '*',
-  method:['GET','PUT','POST']
-  }
+const corsOptions = {
+  origin: "*",
+  method: ["GET", "PUT", "POST"],
+};
 
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
@@ -18,7 +18,7 @@ const db = mysql.createConnection({
   user: process.env.user,
   host: process.env.host,
   password: process.env.password,
-  insecureAuth: true
+  insecureAuth: true,
 });
 
 // db.query("ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'");
@@ -26,11 +26,13 @@ const db = mysql.createConnection({
 
 db.query("CREATE DATABASE IF NOT EXISTS employeeSystem");
 db.query("USE employeeSystem");
-db.query("CREATE TABLE IF NOT EXISTS employees (id int auto_increment primary key not null, name varchar(255), age int, country varchar(255), position varchar(255), wage int)");
+db.query(
+  "CREATE TABLE IF NOT EXISTS employees (id int auto_increment primary key not null, name varchar(255), age int, country varchar(255), position varchar(255), wage int)"
+);
 
-app.get("/",(req,res) => {
+app.get("/", (req, res) => {
   console.log("incoming req");
-  if(db) {
+  if (db) {
     res.status(200).send("Hello World MYSQL Connected");
   } else {
     res.status(200).send("Hello World Not Connected");
@@ -43,8 +45,6 @@ app.post("/create", (req, res) => {
   const country = req.body.country;
   const position = req.body.position;
   const wage = req.body.wage;
-
-
 
   db.query(
     "INSERT INTO employees (name, age, country, position, wage) VALUES (?,?,?,?,?)",
