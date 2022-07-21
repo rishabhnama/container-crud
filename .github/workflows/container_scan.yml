@@ -6,8 +6,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the container image
-        run: docker build . --file client/dockerfile --tag localbuild/testimage:latest
+        run: |
+          cd server
+          cd client
+          docker build . -t rishabhnama/crudappreact:latest
       - uses: anchore/scan-action@v3
         with:
-          image: "localbuild/testimage:latest"
+          image: "rishabhnama/crudappreact:latest"
           fail-build: true
