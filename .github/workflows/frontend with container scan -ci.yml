@@ -6,25 +6,21 @@ name: Docker Client CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
-#   pull_request:
-#     branches: [ main ]
+    branches: [main]
+  #   pull_request:
+  #     branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-
       - uses: actions/checkout@v2
-
 
       - name: Docker Login
         uses: docker/login-action@v1
@@ -32,15 +28,13 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-
       - name: Run a multi-line script
         run: |
           cd server
           cd client
-          docker build . -t rishabhnama/crudappreact:latest
-          docker push rishabhnama/crudappreact:latest
-          
+          docker build . -t rishabhnama/crudtest:latest
+          docker push rishabhnama/crudtest:latest
+
       - uses: azure/container-scan@v0
         with:
-          image-name: rishabhnama/crudappreact:latest
-
+          image-name: rishabhnama/crudtest:latest
