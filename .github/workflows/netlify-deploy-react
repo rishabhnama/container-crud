@@ -1,0 +1,66 @@
+name: React- aws test for secrets injection
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+      - uses: actions/checkout@v2
+      
+      - uses: actions/checkout@v2
+      
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Read secrets from AWS Secrets Manager into environment variables
+        uses: abhilash1in/aws-secrets-manager-action@v2.1.0
+        with:
+          secrets: profile
+          parse-json: true
+
+#      - name: Check if env variable is set after fetching secrets
+#        run: |
+#          if [ -z ${PROFILE_NAME+x} ]; then echo "PROFILE_NAME is unset"; else echo "PROFILE_NAME is set to '$PROFILE_NAME'"; fi
+#          if [ -z ${PROFILE_FIRSTNAME+x} ]; then echo "PROFILE_FIRSTNAME is unset"; else echo "PROFILE_FIRSTNAME is set to '$PROFILE_FIRSTNAME'"; fi
+#          if [ -z ${PROFILE_LASTNAME+x} ]; then echo "PROFILE_LASTNAME is unset"; else echo "PROFILE_LASTNAME is set to '$PROFILE_LASTNAME'"; fi
+#          if [ -z ${PROFILE_AGE+x} ]; then echo "PROFILE_AGE is unset"; else echo "PROFILE_AGE is set to '$PROFILE_AGE'"; fi
+#          if [ -z ${PROFILE_STATE+x} ]; then echo "PROFILE_STATE is unset"; else echo "PROFILE_STATE is set to '$PROFILE_STATE'"; fi
+      
+      
+      - name: Run a multi-line script
+        run: |
+          cd server
+          cd client
+          source env_test.txt
+          npm install        
+          npm start
+          
+      - name: Deploy to Netlify    
+      - uses: jsmrcaga/action-netlify-deploy@master
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_DEPLOY_MESSAGE: "Prod deploy v${{ github.ref }}"
+          NETLIFY_DEPLOY_TO_PROD: true
+          
+          
+
+
+
